@@ -1,0 +1,17 @@
+lambda:
+  bucket: bucket
+  functions:
+    - name: function1
+      key: function/lambda-v1.zip
+
+kubernetes:
+  deployments:
+    - name: service1
+      namespace: default
+      version: v1
+    - name: service2
+      namespace: tenera
+      version: v2
+    - name: service3
+      namespace: tenera
+      version: v3
