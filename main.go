@@ -1,6 +1,9 @@
 package main
 
 import (
+	"github.com/okhuz/bumper/kubernetes"
+	"github.com/okhuz/bumper/lambda"
+	"github.com/okhuz/bumper/models"
 	"gopkg.in/yaml.v3"
 	"log"
 	"os"
@@ -14,18 +17,18 @@ func main() {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	bumper := Bumper{}
+	bumper := models.Bumper{}
 
 	err = yaml.Unmarshal(file, &bumper)
 	if err != nil {
 		log.Fatal(err.Error())
 	}
 
-	functionChan := getFunctionChan(&bumper.Lambda)
-	functionOperationChan := getUpdateFunctionChan(functionChan)
+	functionChan := lambda.GetFunctionChan(&bumper.Lambda)
+	functionOperationChan := lambda.GetUpdateFunctionChan(functionChan)
 
-	deploymentChan := getDeploymentChan(&bumper.Kubernetes)
-	deploymentOperationChan := getUpdateDeploymentsChan(deploymentChan)
+	deploymentChan := kubernetes.GetDeploymentChan(&bumper.Kubernetes)
+	deploymentOperationChan := kubernetes.GetUpdateDeploymentsChan(deploymentChan)
 
 	wg := sync.WaitGroup{}
 

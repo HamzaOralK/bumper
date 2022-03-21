@@ -1,4 +1,4 @@
-package main
+package models
 
 type Function struct {
 	Name   string `yaml:"name"`
