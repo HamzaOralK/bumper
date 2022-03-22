@@ -14,7 +14,7 @@ type Lambda struct {
 type Deployment struct {
 	Name      string `yaml:"name"`
 	Namespace string `yaml:"namespace"`
-	Version   string `yaml:"version"`
+	Tag       string `yaml:"tag"`
 	Restart   bool   `yaml:"restart"`
 }
 

@@ -48,8 +48,8 @@ func updateDeployment(client *kubernetes.Clientset, deployment *models.Deploymen
 		log.Println(deploymentGetError)
 		return deploymentGetError
 	} else {
-		log.Printf("Updating deployment %s with version %s for Cluster %s\n", deployment.Name, deployment.Version, deployed.ClusterName)
-		deployed.Spec.Template.Spec.Containers[0].Image = fmt.Sprintf("%s:%s", getImageRepository(deployed.Spec.Template.Spec.Containers[0].Image), deployment.Version)
+		log.Printf("Updating deployment %s with version %s for Cluster %s\n", deployment.Name, deployment.Tag, deployed.ClusterName)
+		deployed.Spec.Template.Spec.Containers[0].Image = fmt.Sprintf("%s:%s", getImageRepository(deployed.Spec.Template.Spec.Containers[0].Image), deployment.Tag)
 		_, updateErr := client.AppsV1().Deployments(deployment.Namespace).Update(context.TODO(), deployed, v1.UpdateOptions{})
 		if updateErr != nil {
 			log.Println(updateErr)
