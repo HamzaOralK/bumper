@@ -1,6 +1,6 @@
 # Description
-Bumper is just a declarative version changer for lambdas and Kubernetes cluster. It just takes environment variables
-for AWS authentication and kubeconfig to connect Kubernetes cluster.
+Bumper is just a declarative version changer for lambdas. It just takes environment variables
+for AWS authentication.
 
 Lambdas require a s3 object addresses to update and kubernetes deployment require a new image tag. This tool does not
 wait for updates just makes sure buckets, function and deployments exists.
