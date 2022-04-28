@@ -11,18 +11,6 @@ type Lambda struct {
 	Functions []Function `yaml:"functions"`
 }
 
-type Deployment struct {
-	Name      string `yaml:"name"`
-	Namespace string `yaml:"namespace"`
-	Tag       string `yaml:"tag"`
-	Restart   bool   `yaml:"restart"`
-}
-
-type Kubernetes struct {
-	Deployments []Deployment
-}
-
 type Bumper struct {
-	Lambda     Lambda     `yaml:"lambda"`
-	Kubernetes Kubernetes `yaml:"kubernetes"`
+	Lambda Lambda `yaml:"lambda"`
 }

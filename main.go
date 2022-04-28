@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/okhuz/bumper/kubernetes"
 	"github.com/okhuz/bumper/lambda"
 	"github.com/okhuz/bumper/models"
 	"gopkg.in/yaml.v3"
@@ -27,9 +26,6 @@ func main() {
 	functionChan := lambda.GetFunctionChan(&bumper.Lambda)
 	functionOperationChan := lambda.GetUpdateFunctionChan(functionChan)
 
-	deploymentChan := kubernetes.GetDeploymentChan(&bumper.Kubernetes)
-	deploymentOperationChan := kubernetes.GetUpdateDeploymentsChan(deploymentChan)
-
 	wg := sync.WaitGroup{}
 
 	wg.Add(1)
@@ -37,14 +33,6 @@ func main() {
 		defer wg.Done()
 		for _ = range functionOperationChan {
 			// fmt.Println(f)
-		}
-	}()
-
-	wg.Add(1)
-	go func() {
-		defer wg.Done()
-		for _ = range deploymentOperationChan {
-			// fmt.Println(d)
 		}
 	}()
 
